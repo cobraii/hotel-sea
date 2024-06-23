@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+    
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/img/favicons/site.webmanifest">
+    <link rel="mask-icon" href="/img/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/img/favicons/favicon.ico">
+
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> 
+
+    <title>EcoHouse Apsny</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="notification none">
+            <span class="close">&times;</span>
+            Новая заявка!
+        </div>
+        
+        <header class="layout">
+            <div class="layout-top header">
+                <a href="./admin.html">
+                    <img src="./img/main/logo.svg" alt="Logo">
+                </a>
+                <nav class="layout-nav">
+                    <ul class="layout-nav-list" >
+                        <a href="#main"><li class="layout-nav-list-el">Главная</li></a>
+                        <a href="#bids" class="icon-message-relative">
+                            <span class="icon-message"></span>
+                            <li class="layout-nav-list-el">Сообщения</li>
+                        </a>
+                        <a href="#redaction"><li class="layout-nav-list-el">Редактирование</li></a>
+                    </ul>
+                </nav>
+                <div class="layout-info">
+                    <ul class="layout-info-list">
+                        <li class="layout-info-list-el" >
+                            <img src="./img/admin/admin.svg" alt="Admin">
+                            Администратор
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+        </header>
+
+        <section class="section-main" id="main">
+            <div class="main-content">
+                <div class="section-main-title">
+                    <h1>Добро пожаловать в личный кабинет</h1>
+                    <p>Отсюда можно редактировать основную информацию, а также получать запросы о звонке от посетителей</p>
+                </div>
+                <img src="./img/admin/title-image.png" alt="">
+            </div>
+        </section>
+
+        <section class="bids" id="bids">
+            <h2 class="bids-title">Запросы о звонке</h2>
+            <div class="bids-wrapper">
+                <div class="all-bids">
+                    <div class="all-bids-title">
+                        <img class="all-bids-title-image" src="./img/admin/all-bids.svg" alt="All Bids">
+                        <h3>За все время</h3>
+                    </div>
+                    <div class="all-bids-content"></div>
+                    <div class="pagination" id="pagination-all-bids"></div>
+                </div>
+                
+                <div class="new-bids">
+                    <div class="new-bids-title">
+                        <img class="new-bids-title-image" src="./img/admin/new-bids.svg" alt="New Bids">
+                        <h3>Новые заявки</h3>
+                    </div>
+
+                    <div class="new-bids-content"></div>
+                    
+                    <div class="pagination" id="pagination-new-bids"></div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="redaction" id="redaction">
+            <h2 class="redaction-title">Редактирование основной информации</h2>
+            <div class="redaction-title-tabs">
+                <h3 class="redaction-data-title active">Прайс-лист</h3>
+                <h3 class="redaction-data-title">Личные данные</h3>
+            </div>
+
+            <div class="price-list" id="price">
+                <nav class="month-navigation">
+                    <ul class="months">
+                        <li class="month active" data-month="march">Март</li>
+                        <li class="month" data-month="april">Апрель</li>
+                        <li class="month" data-month="may">Май</li>
+                        <li class="month" data-month="june">Июнь</li>
+                        <li class="month" data-month="july">Июль</li>
+                        <li class="month" data-month="august">Август</li>
+                        <li class="month" data-month="september">Сентябрь</li>
+                        <li class="month" data-month="october">Октябрь</li>
+                        <li class="month" data-month="november">Ноябрь</li>
+                        <li class="month" data-month="winter">Зима</li>
+                    </ul>
+                </nav>
+                <div class="swiper-container swiper-price">
+                    <div class="swiper-wrapper ">
+                        <div class="swiper-slide" id="march">
+                            <div class="month-price-list">
+                                <div class="month-image">
+                                    <img src="./img/information/prise-list/house.png" alt="House">
+                                </div>
+                                <div class="price-list-info">
+                                    <div class="price">
+                                        <span class="price-list-title">Цена:</span>
+                                        <input readonly class="price-list-title-info" data-month="2">
+                                    </div>
+                                    <div class="time-info">
+                                        <div  class="time-info-content-wrapper">
+                                            <span class="price-list-title">Время:</span>
+                                            <input value="одна ночь" readonly class="price-list-info"> 
+                                        </div>
+                                        <div class="time-info-content-wrapper">
+                                            <span class="price-list-title">Заезд:</span>
+                                            <p class="checkIn-text">не раньше</p>
+                                            <input readonly class="price-list-info checkIn">
+                                        </div>
+                                        <div class="time-info-content-wrapper">
+                                            <span class="price-list-title">Выезд:</span>
+                                            <p>не позже</p>
+                                            <input readonly class="price-list-info checkOut">  
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide" id="april">
+                            <div class="month-price-list">
+                                <div class="month-image">
+                                    <img src="./img/information/prise-list/house.png" alt="House">
+                                </div>
+                                <div class="price-list-info">
+                                    <div class="price">
+                                        <span class="price-list-title">Цена:</span>
+                                        <input readonly class="price-list-title-info" data-month="3">
+                                    </div>
+                                    <div class="time-info">
+                                        <div  class="time-info-content-wrapper">
+                                            <span class="price-list-title">Время:</span>
+                                            <input value="одна ночь" readonly class="price-list-info"> 
+                                        </div>
+                                        <div class="time-info-content-wrapper">
+                                            <span class="price-list-title">Заезд:</span>
+                                            <p class="checkIn-text">не раньше</p>
+                                            <input readonly class="price-list-info checkIn">
+                                        </div>
+                                        <div class="time-info-content-wrapper">
+                                            <span class="price-list-title">Выезд:</span>
+                                            <p>не позже</p>
+                                            <input readonly class="price-list-info checkOut">  
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide" id="may">
+                            <div class="month-price-list">
+                                <div class="month-image">
+                                    <img src="./img/information/prise-list/house.png" alt="House">
+                                </div>
+                                <div class="price-list-info">
+                                    <div class="price">
+                                        <span class="price-list-title">Цена:</span>
+                                        <input readonly class="price-list-title-info" data-month="4">
+                                    </div>
+                                    <div class="time-info">
+                                        <div  class="time-info-content-wrapper">
+                                            <span class="price-list-title">Время:</span>
+                                            <input value="одна ночь" readonly class="price-list-info"> 
+                                        </div>
+                                        <div class="time-info-content-wrapper">
+                                            <span class="price-list-title">Заезд:</span>
+                                            <p class="checkIn-text">не раньше</p>
+                                            <input readonly class="price-list-info checkIn">
+                                        </div>
+                                        <div class="time-info-content-wrapper">
+                                            <span class="price-list-title">Выезд:</span>
+                                            <p>не позже</p>
+                                            <input readonly class="price-list-info checkOut">  
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide" id="june">
+                            <div class="month-price-list">
+                                <div class="month-image">
+                                    <img src="./img/information/prise-list/house.png" alt="House">
+                                </div>
+                                <div class="price-list-info">
+                                    <div class="price">
+                                        <span class="price-list-title">Цена:</span>
+                                        <input readonly class="price-list-title-info" data-month="5">
+                                    </div>
+                                    <div class="time-info">
+                                        <div  class="time-info-content-wrapper">
+                                            <span class="price-list-title">Время:</span>
+                                            <input value="одна ночь" readonly class="price-list-info"> 
+                                        </div>
+                                        <div class="time-info-content-wrapper">
+                                            <span class="price-list-title">Заезд:</span>
+                                            <p class="checkIn-text">не раньше</p>
+                                            <input readonly class="price-list-info checkIn">
+                                        </div>
+                                        <div class="time-info-content-wrapper">
+                                            <span class="price-list-title">Выезд:</span>
+                                            <p>не позже</p>
+                                            <input readonly class="price-list-info checkOut">  
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide" id="july">
+                            <div class="month-price-list">
+                                <div class="month-image">
+                                    <img src="./img/information/prise-list/house.png" alt="House">
+                                </div>
+                                <div class="price-list-info">
+                                    <div class="price">
+                                        <span class="price-list-title">Цена:</span>
+                                        <input readonly class="price-list-title-info" data-month="6">
+                                    </div>
+                                    <div class="time-info">
+                                        <div  class="time-info-content-wrapper">
+                                            <span class="price-list-title">Время:</span>
+                                            <input value="одна ночь" readonly class="price-list-info"> 
+                                        </div>
+                                        <div class="time-info-content-wrapper">
+                                            <span class="price-list-title">Заезд:</span>
+                                            <p class="checkIn-text">не раньше</p>
+                                            <input readonly class="price-list-info checkIn">
+                                        </div>
+                                        <div class="time-info-content-wrapper">
+                                            <span class="price-list-title">Выезд:</span>
+                                            <p>не позже</p>
+                                            <input readonly class="price-list-info checkOut">  
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide" id="august">
+                            <div class="month-price-list">
+                                <div class="month-image">
+                                    <img src="./img/information/prise-list/house.png" alt="House">
+                                </div>
+                                <div class="price-list-info">
+                                    <div class="price">
+                                        <span class="price-list-title">Цена:</span>
+                                        <input readonly class="price-list-title-info" data-month="7">
+                                    </div>
+                                    <div class="time-info">
+                                        <div  class="time-info-content-wrapper">
+                                            <span class="price-list-title">Время:</span>
+                                            <input value="одна ночь" readonly class="price-list-info"> 
+                                        </div>
+                                        <div class="time-info-content-wrapper">
+                                            <span class="price-list-title">Заезд:</span>
+                                            <p class="checkIn-text">не раньше</p>
+                                            <input readonly class="price-list-info checkIn">
+                                        </div>
+                                        <div class="time-info-content-wrapper">
+                                            <span class="price-list-title">Выезд:</span>
+                                            <p>не позже</p>
+                                            <input readonly class="price-list-info checkOut">  
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide" id="september">
+                            <div class="month-price-list">
+                                <div class="month-image">
+                                    <img src="./img/information/prise-list/house.png" alt="House">
+                                </div>
+                                <div class="price-list-info">
+                                    <div class="price">
+                                        <span class="price-list-title">Цена:</span>
+                                        <input readonly class="price-list-title-info" data-month="8">
+                                    </div>
+                                    <div class="time-info">
+                                        <div  class="time-info-content-wrapper">
+                                            <span class="price-list-title">Время:</span>
+                                            <input value="одна ночь" readonly class="price-list-info"> 
+                                        </div>
+                                        <div class="time-info-content-wrapper">
+                                            <span class="price-list-title">Заезд:</span>
+                                            <p class="checkIn-text">не раньше</p>
+                                            <input readonly class="price-list-info checkIn">
+                                        </div>
+                                        <div class="time-info-content-wrapper">
+                                            <span class="price-list-title">Выезд:</span>
+                                            <p>не позже</p>
+                                            <input readonly class="price-list-info checkOut">  
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide" id="october">
+                            <div class="month-price-list">
+                                <div class="month-image">
+                                    <img src="./img/information/prise-list/house.png" alt="House">
+                                </div>
+                                <div class="price-list-info">
+                                    <div class="price">
+                                        <span class="price-list-title">Цена:</span>
+                                        <input readonly class="price-list-title-info" data-month="9">
+                                    </div>
+                                    <div class="time-info">
+                                        <div  class="time-info-content-wrapper">
+                                            <span class="price-list-title">Время:</span>
+                                            <input value="одна ночь" readonly class="price-list-info"> 
+                                        </div>
+                                        <div class="time-info-content-wrapper">
+                                            <span class="price-list-title">Заезд:</span>
+                                            <p class="checkIn-text">не раньше</p>
+                                            <input readonly class="price-list-info checkIn">
+                                        </div>
+                                        <div class="time-info-content-wrapper">
+                                            <span class="price-list-title">Выезд:</span>
+                                            <p>не позже</p>
+                                            <input readonly class="price-list-info checkOut">  
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide" id="november">
+                            <div class="month-price-list">
+                                <div class="month-image">
+                                    <img src="./img/information/prise-list/house.png" alt="House">
+                                </div>
+                                <div class="price-list-info">
+                                    <div class="price">
+                                        <span class="price-list-title">Цена:</span>
+                                        <input readonly class="price-list-title-info" data-month="10">
+                                    </div>
+                                    <div class="time-info">
+                                        <div  class="time-info-content-wrapper">
+                                            <span class="price-list-title">Время:</span>
+                                            <input value="одна ночь" readonly class="price-list-info"> 
+                                        </div>
+                                        <div class="time-info-content-wrapper">
+                                            <span class="price-list-title">Заезд:</span>
+                                            <p class="checkIn-text">не раньше</p>
+                                            <input readonly class="price-list-info checkIn">
+                                        </div>
+                                        <div class="time-info-content-wrapper">
+                                            <span class="price-list-title">Выезд:</span>
+                                            <p>не позже</p>
+                                            <input readonly class="price-list-info checkOut">  
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide" id="winter">
+                            <div class="month-price-list">
+                                <div class="month-image">
+                                    <img src="./img/information/prise-list/house.png" alt="House">
+                                </div>
+                                <div class="price-list-info">
+                                    <div class="price">
+                                        <span class="price-list-title">Цена:</span>
+                                        <input readonly class="price-list-title-info" data-month="1">
+                                    </div>
+                                    <div class="time-info">
+                                        <div  class="time-info-content-wrapper">
+                                            <span class="price-list-title">Время:</span>
+                                            <input value="одна ночь" readonly class="price-list-info"> 
+                                        </div>
+                                        <div class="time-info-content-wrapper">
+                                            <span class="price-list-title">Заезд:</span>
+                                            <p class="checkIn-text">не раньше</p>
+                                            <input readonly class="price-list-info checkIn">
+                                        </div>
+                                        <div class="time-info-content-wrapper">
+                                            <span class="price-list-title">Выезд:</span>
+                                            <p>не позже</p>
+                                            <input readonly class="price-list-info checkOut">  
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-button-prev swiper-price-prev">
+                        <svg width="51" height="68" viewBox="0 0 51 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50.3334 4.00004L50.3334 64C50.3315 64.6075 50.164 65.203 49.8488 65.7223C49.5337 66.2416 49.0829 66.6652 48.5449 66.9474C48.007 67.2295 47.4022 67.3597 46.7958 67.3237C46.1894 67.2878 45.6043 67.0871 45.1034 66.7434L1.77011 36.7434C-0.0265578 35.5 -0.0265579 32.5067 1.77011 31.26L45.1034 1.26004C45.6033 0.912788 46.1887 0.709153 46.7961 0.671256C47.4035 0.633359 48.0097 0.762652 48.5488 1.04509C49.0879 1.32752 49.5393 1.75229 49.8539 2.27325C50.1686 2.79421 50.3344 3.39144 50.3334 4.00004ZM9.52344 34L43.6668 57.64L43.6668 10.36L9.52344 34Z" fill="#4D4D4D" />
+                        </svg>
+                    </div>
+                    <div class="swiper-button-next swiper-price-next">
+                        <svg width="51" height="68" viewBox="0 0 51 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.666557 3.99979L0.666555 63.9998C0.668462 64.6073 0.836003 65.2027 1.15115 65.722C1.46629 66.2414 1.9171 66.6649 2.45506 66.9471C2.99302 67.2293 3.59776 67.3594 4.20417 67.3235C4.81057 67.2875 5.3957 67.0869 5.89656 66.7431L49.2299 36.7431C51.0266 35.4998 51.0266 32.5065 49.2299 31.2598L5.89656 1.25979C5.39675 0.912544 4.81133 0.708908 4.20391 0.671012C3.59649 0.633115 2.9903 0.762407 2.4512 1.04484C1.91211 1.32727 1.46071 1.75205 1.14608 2.27301C0.831444 2.79397 0.6656 3.39119 0.666557 3.99979ZM41.4766 33.9998L7.33322 57.6398L7.33322 10.3598L41.4766 33.9998Z" fill="#4D4D4D" />
+                    </svg>
+                    </div> 
+                </div>
+                <button class="redaction-button-price-list">Редактировать</button>
+                <div class="modification-price-list none">
+                    <button type="submit" class="save-price-list">Сохранить</button>
+                    <button type="button" class="cancel-price-list">Отмена</button>
+                </div>
+            </div>
+
+            <div class="data-setup none">
+                <div class="data-setup-content-wrapper">
+                    <div class="tab-content">
+                        <h3 class="tab-content-price-title">Настройте контакты</h3>
+                        <form class="form-tab-content contacts">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            <div class="form-group">
+                                <input readonly type="text" class="input phone">
+                                <input readonly type="email" class="input email">
+                            </div>
+                            <button type="submit" class="save-data-setup contacts none">Сохранить</button>
+                        </form>
+
+                    </div>
+                    <div class="tab-content">
+                        <h3 class="tab-content-price-title">Настройте вход</h3>
+                        <form class="form-tab-content password">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            <div class="form-group">
+                                <input readonly type="password" class="input password" name="password">
+                            </div>
+                            <button type="submit" class="save-data-setup password none">Сохранить</button>
+                        </form>
+
+                    </div>
+                </div>
+                    <button class="redaction-button-data-setup">Редактировать</button>
+                    <button type="button" class="cancel-data-setup none">Отмена</button>
+            </div>   
+        </section>
+    </div>
+    <audio src="./sound/u_edomlenie-9.mp3" class="none" id="audio"></audio>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="./js/constant.js" type="module"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/admin.js" type="module"></script>
+    <script src="./js/adminContacts.js" type="module"></script>
+    <script src="./js/adminRequest.js" type="module"></script>
+
+</body>
+</html>

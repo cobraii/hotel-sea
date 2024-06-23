@@ -1,0 +1,131 @@
+.advantages{
+    padding-top: 100px;
+    margin-bottom: 100px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 1350px;
+    height: 699px;
+    color: #4d4d4d;
+    min-width: 0;
+    border-radius: 30px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background: #fff;
+
+    @media (max-width: 1199px) {
+        padding-top: 0;
+        margin-bottom: 50px;
+        height: 280px;
+        position: relative;
+        box-shadow: none;
+    }
+}
+
+.advantages-title{
+    margin-bottom: 60px;
+    font-weight: 600;
+    font-size: 45px;
+
+    @media (max-width: 1199px) {
+        margin-bottom: 35px;
+        font-weight: 700;
+        font-size: 20px;
+    }
+
+}
+
+.swiper-slide-advantages{
+    width: 400px !important;
+    @media (max-width: 1199px) {
+        width: 100% !important; 
+        display: flex !important;
+        justify-content: center;
+     }
+    
+}
+
+.swiper-advantages-pagination{
+    display: flex;
+    justify-content: center;
+    bottom: -12px !important;
+    display: none;
+    
+    span{
+        width: 40px !important;
+        height: 2px !important;
+        background: #4d4d4d !important;
+        border-radius: 30px !important;
+    }
+
+    @media (max-width: 1199px) {
+       display: flex;
+       z-index: 9 !important;
+    }
+}   
+
+
+.advantages-content-info{
+    position: relative;
+    border-radius: 30px;
+    background-color: #fff;
+
+    @media (max-width: 1199px) {
+        width: 290px !important;
+    }
+}
+
+.advantages-content-info-text{
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 320px;
+    font-weight: 600;
+    font-size: 25px;
+    text-align: center;
+    color: #fff;
+
+    @media (max-width: 1199px) {
+        width: 205px;
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+}
+
+.advantages-button {
+    padding-top: 60px;
+    display: flex;
+    gap: 20px;
+
+    @media (max-width: 1199px) {
+        display: none;
+    }
+}
+
+.advantages-button-order {
+    width: 216px;
+    height: 47px;
+    border-radius: 15px;
+    background: #5bacf6;
+
+    font-weight: 700;
+    font-size: 16px;
+    color: #fff;
+}
+.advantages-button-order:hover{
+    background: #0056b3;
+}
+.advantages-button-call {
+    width: 226px;
+    height: 47px;
+    border-radius: 15px;
+    background-color: #fff;
+    border: 1px solid #5bacf6;
+
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
+    color: #5bacf6;
+}

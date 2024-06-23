@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/img/favicons/site.webmanifest">
+    <link rel="mask-icon" href="/img/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/img/favicons/favicon.ico">
+    
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> 
+
+    <title>EcoHouse Apsny</title>
+</head>
+<body >
+    <div class="container ">
+        <div class="flutter none">
+            <div class="section-modal-content-form">
+                <form class="form form-white">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <div class="form-content-dates-arrival ">
+                        <h3 class="form-content-dates-arrival-title">Забронировать</h3>
+                        <div class="form-data-input-date-wrapper">
+                            <div class="form-group-input-data" >
+                                <span class="label checkInDateSpan">Заезд</span>
+                                <input type="date" id="" class="date-input form-checkIn">
+                            </div>
+                            <div class="form-group-input-data">
+                                <span class="label checkOutDateSpan">Выезд</span>
+                                <input type="date" class="date-input form-checkOut">
+                            </div>
+                            <div class="form-group-input-data">
+                                <span class="label number-label">Номер</span>
+                                <svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M14.9143 0.393039C14.8506 0.274574 14.7551 0.175355 14.638 0.106088C14.5208 0.036822 14.3866 0.000139536 14.2497 0H0.748466C0.611836 0.000551729 0.477944 0.0375049 0.36119 0.106885C0.244436 0.176266 0.149237 0.275449 0.0858307 0.393768C0.0224242 0.512087 -0.0067905 0.645065 0.00132822 0.778403C0.00944695 0.91174 0.0545919 1.04039 0.131908 1.15052L6.88254 10.6832C6.95135 10.7809 7.04342 10.8608 7.15083 10.916C7.25823 10.9712 7.37775 11 7.49909 11C7.62043 11 7.73995 10.9712 7.84736 10.916C7.95476 10.8608 8.04684 10.7809 8.11565 10.6832L14.8663 1.15052C14.9443 1.04062 14.9901 0.91189 14.9986 0.778339C15.007 0.644788 14.9779 0.511524 14.9143 0.393039ZM7.49909 8.97758L2.1796 1.46657H12.8186L7.49909 8.97758Z" fill="#ADADAD" />
+                                </svg>
+                                <input type="number" class="date-input numberInput" >
+                                <ul class="dropdown numberDropdown" >
+                                    <li class="dropdown-item">01</li>
+                                    <li class="dropdown-item">02</li>
+                                    <li class="dropdown-item">03</li>
+                                    <li class="dropdown-item">04</li>
+                                    <li class="dropdown-item">05</li>
+                                    <li class="dropdown-item">06</li>
+                                    <li class="dropdown-item">07</li>
+                                    <li class="dropdown-item">08</li>
+                                    <li class="dropdown-item">09</li>
+                                    <li class="dropdown-item">10</li>
+                                    <li class="dropdown-item">11</li>
+                                    <li class="dropdown-item">12</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="form-content-continue">Далее</button>
+                        <p class="form-content-text">Нажимая на кнопку, я даю разрешение на обработку данных</p>
+                    </div>
+                    <div class="form-human-data none">
+                        <h3 class="form-content-dates-arrival-title">Забронировать</h3>
+                        <div class="form-call" id="order-call">
+                            <input class="form-order-call-input" id="main-name" type="text" placeholder="Имя">
+                            <input class="form-order-call-input" id="main-surname" type="text" placeholder="Фамилия">
+                            <input class="form-order-call-input" id="main-phone" type="tel" placeholder="Телефон">
+                            <div class="form-order-call-checkbox ">
+                                <button class="toggle-button">
+                                    <svg class="toggle-button-svg" width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9.94285 0.285847C9.90041 0.19969 9.83672 0.127531 9.75864 0.0771551C9.68056 0.0267796 9.59107 0.000101481 9.49981 0H0.498977C0.40789 0.000401257 0.318629 0.0272763 0.240793 0.0777349C0.162957 0.128193 0.0994914 0.200326 0.0572204 0.286377C0.0149495 0.372427 -0.004527 0.469138 0.000885481 0.566111C0.00629796 0.663083 0.0363946 0.756648 0.0879389 0.836742L4.58836 7.7696C4.63423 7.84066 4.69561 7.89876 4.76722 7.93889C4.83882 7.97903 4.9185 8 4.99939 8C5.08029 8 5.15997 7.97903 5.23157 7.93889C5.30318 7.89876 5.36456 7.84066 5.41043 7.7696L9.91085 0.836742C9.9629 0.756812 9.9934 0.663193 9.99904 0.566065C10.0047 0.468937 9.98525 0.372018 9.94285 0.285847ZM4.99939 6.52915L1.45307 1.06659H8.54572L4.99939 6.52915Z" fill="#4d4d4d" />
+                                    </svg>
+                                </button>
+                                <p class="selected-title form-order-call-checkbox-title" id="main-order-call" data-checkbox="telegram">Мне удобней Telegram</p>
+                                <div class="data-block form-order-call-block none">
+                                    <ul class="form-order-call-list">
+                                        <li class="call" data-value="Мне удобней звонок">Мне удобней звонок</li>
+                                        <li class="whatsapp" data-value="Мне удобней WhatsApp">Мне удобней WhatsApp</li>
+                                        <li class="telegram" data-value="Мне удобней Telegram">Мне удобней Telegram</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-button">
+                            <div class="form-button-row">
+                                <button class="form-button-verify" >Подтвердить</button>
+                                <button class="form-button-prev">Назад</button>
+                            </div>
+                            <p class="form-content-text">Нажимая на кнопку, я даю разрешение на обработку данных</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <header class="layout" id="header">
+            <div class="layout-top header">
+                <div class="reference-wrapper">
+                    <a href='#reserve'>
+                        <div class="image-svg-mobile">
+                        <img src="./img/main/phone-mobile.svg" alt="Phone">
+                        <img src="./img/main/geo-mobile.svg" alt="Geo">
+                        </div>
+                    </a>
+                    <a class="image-logo" href="index.html">
+                        <img  src="./img/main/logo.svg" alt="Logo">
+                    </a>
+                </div>
+                <nav class="layout-nav">
+                    <ul class="layout-nav-list header" id="nav-list">
+                        <a href="#main"><li class="layout-nav-list-el">Главная</li></a>
+                        <a href="#information"><li class="layout-nav-list-el">Услуги</li></a>
+                        <a href="#advantages"><li class="layout-nav-list-el">Преимущества</li></a>
+                        <a href="#reserve"><li class="layout-nav-list-el">Контакты</li></a>
+                    </ul>
+                </nav>
+                <div class="layout-info header">
+                    <div class="layout-info-list">
+                        <div class="layout-info-list-el phone-contacts" >
+                            <img src="./img/main/phone.svg" alt="Phone">
+                        </div>
+                        <div class="layout-info-list-el">
+                            <img src="./img/main/geo.svg" alt="Address">
+                            <span class="adress">Ул. Чанба 54А</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hamburger-menu" id="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </header>
+
+        <section class="section-main" id="main">
+            <div class="main-content">
+                <div class="section-main-title">
+                    <h1>Новый коттеджный комплекс в Гагре</h1>
+                    <p>Успейте забронировать место по выгодной цене в самом теплом городе Абхазии</p>
+                </div>
+                <div class="main-form">
+                    <form class="form">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        <div class="form-content-dates-arrival">
+                            <h3 class="form-content-dates-arrival-title">Забронировать</h3>
+                            <div class="form-data-input-date-wrapper">
+                                <div class="form-group-input-data" >
+                                    <span class="label checkInDateSpan">Заезд</span>
+                                    <input type="date" id="" class="date-input form-checkIn">
+                                </div>
+                                <div class="form-group-input-data">
+                                    <span class="label checkOutDateSpan">Выезд</span>
+                                    <input type="date" class="date-input form-checkOut">
+                                </div>
+                                <div class="form-group-input-data">
+                                    <span class="label number-label">Номер</span>
+                                    <svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14.9143 0.393039C14.8506 0.274574 14.7551 0.175355 14.638 0.106088C14.5208 0.036822 14.3866 0.000139536 14.2497 0H0.748466C0.611836 0.000551729 0.477944 0.0375049 0.36119 0.106885C0.244436 0.176266 0.149237 0.275449 0.0858307 0.393768C0.0224242 0.512087 -0.0067905 0.645065 0.00132822 0.778403C0.00944695 0.91174 0.0545919 1.04039 0.131908 1.15052L6.88254 10.6832C6.95135 10.7809 7.04342 10.8608 7.15083 10.916C7.25823 10.9712 7.37775 11 7.49909 11C7.62043 11 7.73995 10.9712 7.84736 10.916C7.95476 10.8608 8.04684 10.7809 8.11565 10.6832L14.8663 1.15052C14.9443 1.04062 14.9901 0.91189 14.9986 0.778339C15.007 0.644788 14.9779 0.511524 14.9143 0.393039ZM7.49909 8.97758L2.1796 1.46657H12.8186L7.49909 8.97758Z" fill="#ADADAD" />
+                                    </svg>
+                                    <input type="number" class="date-input numberInput" >
+                                    <ul class="dropdown numberDropdown" >
+                                        <li class="dropdown-item">01</li>
+                                        <li class="dropdown-item">02</li>
+                                        <li class="dropdown-item">03</li>
+                                        <li class="dropdown-item">04</li>
+                                        <li class="dropdown-item">05</li>
+                                        <li class="dropdown-item">06</li>
+                                        <li class="dropdown-item">07</li>
+                                        <li class="dropdown-item">08</li>
+                                        <li class="dropdown-item">09</li>
+                                        <li class="dropdown-item">10</li>
+                                        <li class="dropdown-item">11</li>
+                                        <li class="dropdown-item">12</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <button class="form-content-continue">Далее</button>
+                            <p class="form-content-text">Нажимая на кнопку, я даю разрешение на обработку данных</p>
+                        </div>
+                        <div class="form-human-data none">
+                            <h3 class="form-content-dates-arrival-title">Забронировать</h3>
+                            <div class="form-call" id="order-call">
+                                <input class="form-order-call-input" id="main-name" type="text" placeholder="Имя">
+                                <input class="form-order-call-input" id="main-surname" type="text" placeholder="Фамилия">
+                                <input class="form-order-call-input" id="main-phone" type="tel" placeholder="Телефон">
+                                <div class="form-order-call-checkbox ">
+                                    <button class="toggle-button">
+                                        <svg class="toggle-button-svg" width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.94285 0.285847C9.90041 0.19969 9.83672 0.127531 9.75864 0.0771551C9.68056 0.0267796 9.59107 0.000101481 9.49981 0H0.498977C0.40789 0.000401257 0.318629 0.0272763 0.240793 0.0777349C0.162957 0.128193 0.0994914 0.200326 0.0572204 0.286377C0.0149495 0.372427 -0.004527 0.469138 0.000885481 0.566111C0.00629796 0.663083 0.0363946 0.756648 0.0879389 0.836742L4.58836 7.7696C4.63423 7.84066 4.69561 7.89876 4.76722 7.93889C4.83882 7.97903 4.9185 8 4.99939 8C5.08029 8 5.15997 7.97903 5.23157 7.93889C5.30318 7.89876 5.36456 7.84066 5.41043 7.7696L9.91085 0.836742C9.9629 0.756812 9.9934 0.663193 9.99904 0.566065C10.0047 0.468937 9.98525 0.372018 9.94285 0.285847ZM4.99939 6.52915L1.45307 1.06659H8.54572L4.99939 6.52915Z" fill="#4d4d4d" />
+                                        </svg>
+                                    </button>
+                                    <p class="selected-title form-order-call-checkbox-title" id="main-order-call" data-checkbox="telegram">Мне удобней Telegram</p>
+                                    <div class="data-block form-order-call-block none">
+                                        <ul class="form-order-call-list">
+                                            <li class="call" data-value="Мне удобней звонок">Мне удобней звонок</li>
+                                            <li class="whatsapp" data-value="Мне удобней WhatsApp">Мне удобней WhatsApp</li>
+                                            <li class="telegram" data-value="Мне удобней Telegram">Мне удобней Telegram</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-button">
+                                <button class="form-button-verify" >Подтвердить</button>
+                                <p class="form-content-text">Нажимая на кнопку, я даю разрешение на обработку данных</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="bottom-line">
+                    <div class="line-active"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+                <button class="order-call">Заказать звонок</button>
+            </div>
+        </section>
+
+        <section class="section-information" id="information">
+            <h2 class="section-information-title">Посмотрите, что вас ждет</h2>
+            <div class="information-navigation">
+                <div class="information-navigation-wrapper">
+                    <button class="information-navigation-button active" data-id="services">Услуги</button>
+                    <button class="information-navigation-button" data-id="price">Прайс-лист</button>
+                    <button class="information-navigation-button" data-id="photo">Фото</button>
+                    <button class="information-navigation-button" data-id="transfer">Трансфер</button>
+                </div>
+            </div>
+            
+            <div class="information-services tab" id="services">
+
+                <div class=" row first-row">
+                    <div class="service ">
+                        <svg class="service-image" width="45" height="60" viewBox="0 0 45 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M35.6667 41.6666C38.0972 41.6666 40.1632 42.5173 41.8646 44.2187C43.566 45.9201 44.4167 47.986 44.4167 50.4166C44.4167 52.8471 43.566 54.9131 41.8646 56.6145C40.1632 58.3159 38.0972 59.1666 35.6667 59.1666C33.8194 59.1666 32.154 58.6319 30.6704 57.5624C29.1868 56.493 28.13 55.0833 27.5 53.3333H8.97916L6.06249 57.8541C5.62499 58.5346 5.00569 58.9605 4.20458 59.1316C3.40347 59.3027 2.66166 59.1685 1.97916 58.7291C1.29666 58.2896 0.871799 57.6694 0.704577 56.8683C0.537355 56.0671 0.670549 55.3263 1.10416 54.6458L12.625 36.9999C9.5625 35.5902 6.9618 33.5126 4.82291 30.767C2.68402 28.0214 1.42013 24.9706 1.03124 21.6145C0.934021 20.7395 1.17708 19.9734 1.76041 19.3162C2.34374 18.6589 3.07291 18.3313 3.94791 18.3333H38.2187C39.0937 18.3333 39.8229 18.6619 40.4062 19.3191C40.9896 19.9763 41.2326 20.7414 41.1354 21.6145C40.7465 24.9687 39.4826 28.0195 37.3437 30.767C35.2049 33.5145 32.6042 35.5921 29.5417 36.9999L31.2187 39.6249C30.1979 40.111 29.3599 40.5971 28.7046 41.0833C28.0493 41.5694 27.3318 42.2499 26.5521 43.1249L23.6354 38.6041C23.2465 38.7013 22.8333 38.7499 22.3958 38.7499H19.7708C19.3333 38.7499 18.9201 38.7013 18.5312 38.6041L12.7708 47.4999H27.5C28.1319 45.7499 29.1897 44.3402 30.6733 43.2708C32.1569 42.2013 33.8214 41.6666 35.6667 41.6666ZM35.6667 53.3333C36.493 53.3333 37.1862 53.0533 37.7462 52.4933C38.3062 51.9333 38.5853 51.241 38.5833 50.4166C38.5814 49.5921 38.3014 48.8999 37.7433 48.3399C37.1853 47.7799 36.493 47.4999 35.6667 47.4999C34.8403 47.4999 34.148 47.7799 33.59 48.3399C33.0319 48.8999 32.7519 49.5921 32.75 50.4166C32.748 51.241 33.028 51.9342 33.59 52.4962C34.1519 53.0581 34.8442 53.3371 35.6667 53.3333ZM21.0833 32.9166C24 32.9166 26.6619 32.1145 29.0692 30.5103C31.4764 28.9062 33.2867 26.7916 34.5 24.1666H7.66666C8.93055 26.7916 10.7535 28.9062 13.1354 30.5103C15.5174 32.1145 18.1667 32.9166 21.0833 32.9166ZM11.3854 8.4895C10.559 7.46867 9.97569 6.48478 9.63541 5.53784C9.29513 4.59089 9.1493 3.53311 9.19791 2.3645C9.19791 1.927 9.35638 1.56242 9.67333 1.27075C9.99027 0.979086 10.3665 0.833252 10.8021 0.833252C11.191 0.833252 11.5069 0.979086 11.75 1.27075C11.993 1.56242 12.1146 1.9027 12.1146 2.29159C12.066 3.26381 12.2244 4.15047 12.59 4.95159C12.9556 5.7527 13.5505 6.66464 14.375 7.68742C15.2014 8.75686 15.7974 9.76603 16.1629 10.7149C16.5285 11.6638 16.6617 12.7206 16.5625 13.8853C16.5139 14.3228 16.3437 14.6874 16.0521 14.9791C15.7604 15.2708 15.3958 15.4166 14.9583 15.4166C14.5694 15.4166 14.2535 15.2708 14.0104 14.9791C13.7674 14.6874 13.6458 14.3471 13.6458 13.9583C13.6944 12.986 13.5369 12.0867 13.1733 11.2603C12.8097 10.4339 12.2137 9.51034 11.3854 8.4895ZM18.75 8.4895C17.9236 7.51728 17.3286 6.5577 16.965 5.61075C16.6014 4.66381 16.4429 3.58172 16.4896 2.3645C16.4896 1.927 16.6481 1.56242 16.965 1.27075C17.2819 0.979086 17.6582 0.833252 18.0937 0.833252C18.4826 0.833252 18.7986 0.979086 19.0417 1.27075C19.2847 1.56242 19.4062 1.9027 19.4062 2.29159C19.3576 3.26381 19.5151 4.15145 19.8787 4.9545C20.2424 5.75756 20.8383 6.66853 21.6667 7.68742C22.495 8.70631 23.091 9.69117 23.4546 10.642C23.8182 11.5928 23.9514 12.6983 23.8542 13.9583C23.8055 14.3958 23.6354 14.7487 23.3437 15.017C23.0521 15.2853 22.6875 15.4185 22.25 15.4166C21.8611 15.4166 21.5451 15.2708 21.3021 14.9791C21.059 14.6874 20.9375 14.3471 20.9375 13.9583C20.9861 12.986 20.8403 12.0867 20.5 11.2603C20.1597 10.4339 19.5764 9.51034 18.75 8.4895ZM26.0417 8.4895C25.2153 7.51728 24.6203 6.5577 24.2567 5.61075C23.893 4.66381 23.7346 3.58172 23.7812 2.3645C23.7812 1.927 23.9397 1.56242 24.2567 1.27075C24.5736 0.979086 24.9499 0.833252 25.3854 0.833252C25.7743 0.833252 26.0903 0.979086 26.3333 1.27075C26.5764 1.56242 26.6979 1.9027 26.6979 2.29159C26.6493 3.26381 26.8068 4.15145 27.1704 4.9545C27.534 5.75756 28.13 6.66853 28.9583 7.68742C29.7867 8.70631 30.3826 9.69117 30.7462 10.642C31.1099 11.5928 31.243 12.6983 31.1458 13.9583C31.0972 14.3958 30.9271 14.7487 30.6354 15.017C30.3437 15.2853 29.9792 15.4185 29.5417 15.4166C29.1528 15.4166 28.8368 15.2708 28.5937 14.9791C28.3507 14.6874 28.2292 14.3471 28.2292 13.9583C28.2778 12.986 28.1319 12.0867 27.7917 11.2603C27.4514 10.4339 26.868 9.51034 26.0417 8.4895Z" fill="#ADADAD" />
+                        </svg>
+                        <p class="service-info service-info-active">Гриль-зона с мангалом и столами</p>
+                    </div>
+                    <div class="service">
+                        <svg class="service-image" width="53" height="53" viewBox="0 0 53 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M40.0131 0.75L29.8937 10.7994C27.3737 13.3216 27.3737 17.5041 29.8937 20.0306L25.9999 23.85L23.1999 21.05L6.7937 4.64375L5.2187 3.13875L3.6437 4.64156C1.7837 6.51398 0.739803 9.04608 0.739803 11.6853C0.739803 14.3245 1.7837 16.8566 3.6437 18.7291L17.3856 32.4666L0.366821 49.4853L3.51026 52.6353L20.529 35.6122L23.1278 38.1409L24.6984 39.7116L26.2034 38.1409L30.0971 34.2428L48.4874 52.6331L51.6374 49.4831L31.6743 29.5922L29.1434 27L32.9715 23.1063H33.0415L33.1071 23.1719C35.6403 25.5781 39.7134 25.5891 42.1984 23.1063L42.404 22.8306L52.2478 12.9869L49.1721 9.91125L39.1249 19.9562C38.1734 20.91 37.0753 20.9297 36.1171 20.0284L47.6671 8.40625L44.5937 5.33062L32.9715 16.8806C32.0703 15.9247 32.0899 14.8244 33.0415 13.875L43.0887 3.82563L40.0131 0.75ZM5.8312 9.98125L27.0281 31.1694L24.7006 33.4947L6.79151 15.5791C5.16838 13.9603 5.12026 11.9128 5.82901 9.97906L5.8312 9.98125Z" fill="#ADADAD" />
+                          </svg>
+                        <p class="service-info">Общая кухня с уютными местами для отдыха</p>
+                    </div>
+                    <div class="service">
+                        <svg class="service-image" width="54" height="57" viewBox="0 0 54 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M27 29.9999C26.1736 29.9999 25.4814 29.7199 24.9233 29.1599C24.3653 28.5999 24.0853 27.9077 24.0833 27.0833V3.74993C24.0833 2.92354 24.3633 2.23132 24.9233 1.67326C25.4833 1.11521 26.1756 0.835206 27 0.833262C27.8244 0.831318 28.5176 1.11132 29.0796 1.67326C29.6415 2.23521 29.9206 2.92743 29.9167 3.74993V27.0833C29.9167 27.9097 29.6367 28.6028 29.0767 29.1628C28.5167 29.7228 27.8244 30.0019 27 29.9999ZM27 56.2499C23.3542 56.2499 19.9397 55.5577 16.7567 54.1733C13.5736 52.7888 10.8028 50.9173 8.44417 48.5587C6.08556 46.2001 4.21403 43.4292 2.82958 40.2462C1.44514 37.0631 0.751944 33.6477 0.75 29.9999C0.75 27.0346 1.23611 24.154 2.20833 21.3578C3.18056 18.5617 4.59028 15.998 6.4375 13.6666C6.97222 12.986 7.65278 12.6584 8.47917 12.6837C9.30556 12.709 10.0347 13.0366 10.6667 13.6666C11.2014 14.2013 11.4444 14.8576 11.3958 15.6353C11.3472 16.4131 11.0799 17.1423 10.5937 17.8228C9.28125 19.5728 8.28472 21.493 7.60417 23.5833C6.92361 25.6735 6.58333 27.8124 6.58333 29.9999C6.58333 35.6874 8.56472 40.5126 12.5275 44.4753C16.4903 48.4381 21.3144 50.4185 27 50.4166C32.6856 50.4146 37.5107 48.4342 41.4754 44.4753C45.4401 40.5165 47.4206 35.6913 47.4167 29.9999C47.4167 27.7638 47.089 25.588 46.4337 23.4724C45.7785 21.3569 44.745 19.4251 43.3333 17.677C42.8472 17.0451 42.5799 16.3528 42.5312 15.6003C42.4826 14.8478 42.7257 14.2033 43.2604 13.6666C43.8438 13.0833 44.5486 12.7799 45.375 12.7566C46.2014 12.7333 46.8819 13.0366 47.4167 13.6666C49.3125 15.9999 50.7592 18.552 51.7567 21.3228C52.7542 24.0937 53.2519 26.986 53.25 29.9999C53.25 33.6458 52.5578 37.0612 51.1733 40.2462C49.7889 43.4312 47.9174 46.202 45.5588 48.5587C43.2001 50.9153 40.4293 52.7869 37.2462 54.1733C34.0632 55.5596 30.6478 56.2519 27 56.2499Z" fill="#ADADAD" />
+                          </svg>
+                        <p class="service-info">Личные ТВ, холодильник и кондиционер</p>
+                    </div>
+                    <div class="service">
+                        <svg class="service-image" width="42" height="66" viewBox="0 0 42 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.5209 65.0834C10.0625 65.0834 8.78699 64.609 7.69421 63.6601C6.60143 62.7112 5.95685 61.5086 5.76046 60.0522L0.583374 21.3334H41.4167L36.2396 60.0522C36.0452 61.5105 35.4006 62.7141 34.3059 63.663C33.2112 64.6119 31.9356 65.0854 30.4792 65.0834H11.5209ZM11.5209 59.2501H30.4792L34.7084 27.1667H7.21879L11.5209 59.2501ZM21 44.6667C23.4306 44.6667 25.4966 43.8161 27.198 42.1147C28.8993 40.4133 29.75 38.3473 29.75 35.9167V30.0834H23.9167V35.9167C23.9167 36.7431 23.6367 37.4363 23.0767 37.9963C22.5167 38.5563 21.8245 38.8354 21 38.8334C20.1756 38.8315 19.4834 38.5515 18.9234 37.9934C18.3634 37.4354 18.0834 36.7431 18.0834 35.9167V30.0834H12.25V35.9167C12.25 38.3473 13.1007 40.4133 14.8021 42.1147C16.5035 43.8161 18.5695 44.6667 21 44.6667ZM29.75 18.4167C28.5348 18.4167 27.5023 17.9919 26.6525 17.1422C25.8028 16.2924 25.377 15.259 25.375 14.0417C25.3731 12.8245 25.7989 11.792 26.6525 10.9442C27.5061 10.0965 28.5386 9.67064 29.75 9.66675C30.9614 9.66286 31.9949 10.0887 32.8505 10.9442C33.706 11.7998 34.1309 12.8323 34.125 14.0417C34.1192 15.2512 33.6943 16.2847 32.8505 17.1422C32.0066 17.9997 30.9731 18.4245 29.75 18.4167ZM15.1667 15.5001C13.125 15.5001 11.3993 14.7952 9.98962 13.3855C8.5799 11.9758 7.87504 10.2501 7.87504 8.20842C7.87504 6.16675 8.5799 4.44105 9.98962 3.03133C11.3993 1.62161 13.125 0.916748 15.1667 0.916748C17.2084 0.916748 18.9341 1.62161 20.3438 3.03133C21.7535 4.44105 22.4584 6.16675 22.4584 8.20842C22.4584 10.2501 21.7535 11.9758 20.3438 13.3855C18.9341 14.7952 17.2084 15.5001 15.1667 15.5001Z" fill="#ADADAD" />
+                          </svg>
+                        <p class="service-info">Регулярна уборка и смена белья</p>
+                    </div>      
+                </div>   
+                <div class=" row second-row">
+                    <div class="service service-parking">
+                        <svg class="service-image" width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M33 62.1666C49.1083 62.1666 62.1667 49.1082 62.1667 32.9999C62.1667 16.8916 49.1083 3.83325 33 3.83325C16.8917 3.83325 3.83337 16.8916 3.83337 32.9999C3.83337 49.1082 16.8917 62.1666 33 62.1666Z" stroke="#ADADAD" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M24.25 47.5832V18.4165H35.9167C38.2373 18.4165 40.4629 19.3384 42.1039 20.9793C43.7448 22.6203 44.6667 24.8459 44.6667 27.1665C44.6667 29.4871 43.7448 31.7127 42.1039 33.3537C40.4629 34.9946 38.2373 35.9165 35.9167 35.9165H24.25" stroke="#ADADAD" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                        <p class="service-info">Парковочное место на 12 автомобилей</p>
+                    </div>
+                    <div class="service">
+                        <svg class="service-image" width="60" height="57" viewBox="0 0 60 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M56.25 21.1667H15.4167V12.4167C15.4167 9.19958 18.033 6.58333 21.25 6.58333C24.4671 6.58333 27.0834 9.19958 27.0834 12.4167H32.9167C32.9167 5.9825 27.6842 0.75 21.25 0.75C14.8159 0.75 9.58337 5.9825 9.58337 12.4167V21.1667H3.75004C2.97649 21.1667 2.23463 21.474 1.68765 22.0209C1.14066 22.5679 0.833374 23.3098 0.833374 24.0833V29.9167C0.833374 37.5175 5.71587 43.9837 12.5 46.3958V56.1667H18.3334V47.4167H41.6667V56.1667H47.5V46.3958C54.2842 43.9837 59.1667 37.5175 59.1667 29.9167V24.0833C59.1667 23.3098 58.8594 22.5679 58.3124 22.0209C57.7655 21.474 57.0236 21.1667 56.25 21.1667ZM53.3334 29.9167C53.3334 36.3508 48.1009 41.5833 41.6667 41.5833H18.3334C11.8992 41.5833 6.66671 36.3508 6.66671 29.9167V27H53.3334V29.9167Z" fill="#ADADAD" />
+                          </svg>
+                        <p class="service-info">Ванна и санузел в каждом домике</p>
+                    </div>
+                    <div class="service">
+                        <svg class="service-image" width="70" height="51" viewBox="0 0 70 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M35 50.2501C32.9583 50.2501 31.2326 49.5452 29.8229 48.1355C28.4132 46.7258 27.7083 45.0001 27.7083 42.9584C27.7083 40.9167 28.4132 39.1911 29.8229 37.7813C31.2326 36.3716 32.9583 35.6667 35 35.6667C37.0417 35.6667 38.7674 36.3716 40.1771 37.7813C41.5868 39.1911 42.2917 40.9167 42.2917 42.9584C42.2917 45.0001 41.5868 46.7258 40.1771 48.1355C38.7674 49.5452 37.0417 50.2501 35 50.2501ZM18.5208 33.7709L12.3958 27.5001C15.2639 24.632 18.6307 22.3599 22.4963 20.6838C26.3618 19.0077 30.5297 18.1687 35 18.1667C39.4703 18.1648 43.6392 19.0155 47.5067 20.7188C51.3742 22.4222 54.74 24.7312 57.6042 27.6459L51.4792 33.7709C49.3403 31.632 46.8611 29.9549 44.0417 28.7397C41.2222 27.5244 38.2083 26.9167 35 26.9167C31.7917 26.9167 28.7778 27.5244 25.9583 28.7397C23.1389 29.9549 20.6597 31.632 18.5208 33.7709ZM6.125 21.3751L0 15.2501C4.47222 10.6806 9.69792 7.10772 15.6771 4.53133C21.6562 1.95494 28.0972 0.666748 35 0.666748C41.9028 0.666748 48.3438 1.95494 54.3229 4.53133C60.3021 7.10772 65.5278 10.6806 70 15.2501L63.875 21.3751C60.1319 17.632 55.7939 14.7037 50.8608 12.5901C45.9278 10.4765 40.6408 9.41869 35 9.41675C29.3592 9.4148 24.0732 10.4726 19.1421 12.5901C14.211 14.7076 9.87194 17.6359 6.125 21.3751Z" fill="#ADADAD" />
+                          </svg>
+                        <p class="service-info">WiFi с открытым доступом в интернет</p>
+                    </div>
+                    <div class="service">
+                        <svg class="service-image" width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M43.75 41.5625H39.375V28.4375H43.75V41.5625ZM43.75 52.5V63.4375C43.75 64.0177 43.5195 64.5741 43.1093 64.9843C42.6991 65.3945 42.1427 65.625 41.5625 65.625H28.4375C27.8573 65.625 27.3009 65.3945 26.8907 64.9843C26.4805 64.5741 26.25 64.0177 26.25 63.4375V52.5H30.625V61.25H39.375V52.5H43.75ZM26.25 41.5625V28.4375H30.625V41.5625H26.25ZM43.75 17.5H39.375V8.75H30.625V17.5H26.25V6.5625C26.25 5.98234 26.4805 5.42594 26.8907 5.0157C27.3009 4.60547 27.8573 4.375 28.4375 4.375H41.5625C42.1427 4.375 42.6991 4.60547 43.1093 5.0157C43.5195 5.42594 43.75 5.98234 43.75 6.5625V17.5Z" fill="#ADADAD" />
+                            <path d="M15.0937 17.5L10.2244 22.9688L15.0894 28.4375H52.5V17.5H15.0937ZM14.1094 13.125H54.6875C55.2676 13.125 55.824 13.3555 56.2343 13.7657C56.6445 14.1759 56.875 14.7323 56.875 15.3125V30.625C56.875 31.2052 56.6445 31.7616 56.2343 32.1718C55.824 32.582 55.2676 32.8125 54.6875 32.8125H14.1094C13.8002 32.8126 13.4945 32.7471 13.2124 32.6204C12.9304 32.4937 12.6784 32.3087 12.4731 32.0775L5.6656 24.4212C5.31011 24.0209 5.11377 23.5041 5.11377 22.9688C5.11377 22.4334 5.31011 21.9166 5.6656 21.5163L12.4731 13.86C12.6784 13.6288 12.9304 13.4438 13.2124 13.3171C13.4945 13.1904 13.8002 13.1249 14.1094 13.125ZM60.5106 47.0312L55.65 52.5H18.2394V41.5625H55.6456L60.5106 47.0312ZM56.63 37.1875H16.0562C15.4761 37.1875 14.9197 37.418 14.5094 37.8282C14.0992 38.2384 13.8687 38.7948 13.8687 39.375V54.6875C13.8687 55.2677 14.0992 55.8241 14.5094 56.2343C14.9197 56.6445 15.4761 56.875 16.0562 56.875H56.6344C56.9435 56.8751 57.2492 56.8096 57.5313 56.6829C57.8133 56.5562 58.0653 56.3712 58.2706 56.14L65.0781 48.4837C65.4336 48.0834 65.6299 47.5666 65.6299 47.0312C65.6299 46.4959 65.4336 45.9791 65.0781 45.5788L58.2706 37.9225C58.0653 37.6913 57.8133 37.5063 57.5313 37.3796C57.2492 37.2529 56.9435 37.1874 56.6344 37.1875H56.63Z" fill="#ADADAD" />
+                          </svg>
+                        <p class="service-info">Экскурсии по красочным местам Абхазии</p>
+                    </div>
+                </div>  
+                <button class="button-row view-all">Смотреть все</button>
+                <button class="button-row collapse none">Свернуть</button>
+            </div>
+            
+            <div class="price-list tab none" id="price">
+                <nav class="month-navigation">
+                    <ul class="months">
+                        <li class="month active" data-month="march">Март</li>
+                        <li class="month" data-month="april">Апрель</li>
+                        <li class="month" data-month="may">Май</li>
+                        <li class="month" data-month="june">Июнь</li>
+                        <li class="month" data-month="july">Июль</li>
+                        <li class="month" data-month="august">Август</li>
+                        <li class="month" data-month="september">Сентябрь</li>
+                        <li class="month" data-month="october">Октябрь</li>
+                        <li class="month" data-month="november">Ноябрь</li>
+                        <li class="month" data-month="winter">Зима</li>
+                    </ul>
+                </nav>
+                <div class="month-selector">
+                    <label for="months">Месяц: </label>
+                    <div class="month-dropdown-wrapper">
+                        <select id="months" class="month-dropdown">
+                            <option value="march">Март</option>
+                            <option value="april">Апрель</option>
+                            <option value="may">Май</option>
+                            <option value="june">Июнь</option>
+                            <option value="july">Июль</option>
+                            <option value="august">Август</option>
+                            <option value="september">Сентябрь</option>
+                            <option value="october">Октябрь</option>
+                            <option value="november">Ноябрь</option>
+                            <option value="winter">Зима</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="swiper-container swiper-price">
+                    <div class="swiper-wrapper ">
+                        <div class="swiper-slide swiper-slide-price-list" id="march" data-swiper-slide-index="0">
+                            <div class="month-price-list">
+                                <div class="month-image">
+                                    <img src="./img/information/prise-list/house.png" alt="House">
+                                </div>
+                                <div class="price-list-info">
+                                    <div class="price">
+                                        <span class="price-list-title">Цена:</span>
+                                        <span class="price-list-title-info" id="price-list" data-month="2"></span>
+                                    </div>
+                                    <div class="time-info">
+                                        <div>
+                                            <span class="time-title">Время:</span>
+                                            <span class="price-list-info-text">одна ночь</span>
+                                        </div>
+                                        <div>
+                                            <span class="time-title">Заезд:</span>
+                                            <span class="price-list-info-text" id="checkIn"></span>
+                                        </div>
+                                        <div>
+                                            <span class="time-title">Выезд:</span>
+                                            <span class="price-list-info-text" id="checkOut"></span>    
+                                        </div>
+                                    </div>     
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide swiper-slide-price-list" id="april" data-swiper-slide-index="1">
+                            <div class="month-price-list">
+                                <div class="month-image">
+                                    <img src="./img/information/prise-list/house.png" alt="House">
+                                </div>
+                                <div class="price-list-info">
+                                    <div class="price">
+                                        <span class="price-list-title">Цена:</span>
+                                        <span class="price-list-title-info" id="price-list" data-month="3"></span>
+                                    </div>
+                                    <div class="time-info">
+                                        <div>
+                                            <span class="time-title">Время:</span>
+                                            <span class="price-list-info-text">одна ночь</span>
+                                        </div>
+                                        <div>
+                                            <span class="time-title">Заезд:</span>
+                                            <span class="price-list-info-text" id="checkIn"></span>
+                                        </div>
+                                        <div>
+                                            <span class="time-title">Выезд:</span>
+                                            <span class="price-list-info-text" id="checkOut"></span>    
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide swiper-slide-price-list" id="may" data-swiper-slide-index="2">
+                            <div class="month-price-list">
+                                <div class="month-image">
+                                    <img src="./img/information/prise-list/house.png" alt="House">
+                                </div>
+                                <div class="price-list-info">
+                                    <div class="price">
+                                        <span class="price-list-title">Цена:</span>
+                                        <span class="price-list-title-info" id="price-list" data-month="4"></span>
+                                    </div>
+                                    <div class="time-info">
+                                        <div>
+                                            <span class="time-title">Время:</span>
+                                            <span class="price-list-info-text">одна ночь</span>
+                                        </div>
+                                        <div>
+                                            <span class="time-title">Заезд:</span>
+                                            <span class="price-list-info-text" id="checkIn"></span>
+                                        </div>
+                                        <div>
+                                            <span class="time-title">Выезд:</span>
+                                            <span class="price-list-info-text" id="checkOut"></span>    
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide swiper-slide-price-list" id="june" data-swiper-slide-index="3">
+                            <div class="month-price-list">
+                                <div class="month-image">
+                                    <img src="./img/information/prise-list/house.png" alt="House">
+                                </div>
+                                <div class="price-list-info">
+                                    <div class="price">
+                                        <span class="price-list-title">Цена:</span>
+                                        <span class="price-list-title-info" id="price-list" data-month="5"></span>
+                                    </div>
+                                    <div class="time-info">
+                                        <div>
+                                            <span class="time-title">Время:</span>
+                                            <span class="price-list-info-text">одна ночь</span>
+                                        </div>
+                                        <div>
+                                            <span class="time-title">Заезд:</span>
+                                            <span class="price-list-info-text" id="checkIn"></span>
+                                        </div>
+                                        <div>
+                                            <span class="time-title">Выезд:</span>
+                                            <span class="price-list-info-text" id="checkOut"></span>    
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide swiper-slide-price-list" id="july" data-swiper-slide-index="4">
+                            <div class="month-price-list">
+                                <div class="month-image">
+                                    <img src="./img/information/prise-list/house.png" alt="House">
+                                </div>
+                                <div class="price-list-info">
+                                    <div class="price">
+                                        <span class="price-list-title">Цена:</span>
+                                        <span class="price-list-title-info" id="price-list" data-month="6"></span>
+                                    </div>
+                                    <div class="time-info">
+                                        <div>
+                                            <span class="time-title">Время:</span>
+                                            <span class="price-list-info-text">одна ночь</span>
+                                        </div>
+                                        <div>
+                                            <span class="time-title">Заезд:</span>
+                                            <span class="price-list-info-text" id="checkIn"></span>
+                                        </div>
+                                        <div>
+                                            <span class="time-title">Выезд:</span>
+                                            <span class="price-list-info-text" id="checkOut"></span>    
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide swiper-slide-price-list" id="august" data-swiper-slide-index="5">
+                            <div class="month-price-list">
+                                <div class="month-image">
+                                    <img src="./img/information/prise-list/house.png" alt="House">
+                                </div>
+                                <div class="price-list-info">
+                                    <div class="price">
+                                        <span class="price-list-title">Цена:</span>
+                                        <span class="price-list-title-info" id="price-list" data-month="7"></span>
+                                    </div>
+                                    <div class="time-info">
+                                        <div>
+                                            <span class="time-title">Время:</span>
+                                            <span class="price-list-info-text">одна ночь</span>
+                                        </div>
+                                        <div>
+                                            <span class="time-title">Заезд:</span>
+                                            <span class="price-list-info-text" id="checkIn"></span>
+                                        </div>
+                                        <div>
+                                            <span class="time-title">Выезд:</span>
+                                            <span class="price-list-info-text" id="checkOut"></span>    
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide swiper-slide-price-list" id="september" data-swiper-slide-index="6">
+                            <div class="month-price-list">
+                                <div class="month-image">
+                                    <img src="./img/information/prise-list/house.png" alt="House">
+                                </div>
+                                <div class="price-list-info">
+                                    <div class="price">
+                                        <span class="price-list-title">Цена:</span>
+                                        <span class="price-list-title-info" id="price-list" data-month="8"></span>
+                                    </div>
+                                    <div class="time-info">
+                                        <div>
+                                            <span class="time-title">Время:</span>
+                                            <span class="price-list-info-text">одна ночь</span>
+                                        </div>
+                                        <div>
+                                            <span class="time-title">Заезд:</span>
+                                            <span class="price-list-info-text" id="checkIn"></span>
+                                        </div>
+                                        <div>
+                                            <span class="time-title">Выезд:</span>
+                                            <span class="price-list-info-text" id="checkOut"></span>    
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide swiper-slide-price-list" id="october" data-swiper-slide-index="7">
+                            <div class="month-price-list">
+                                <div class="month-image">
+                                    <img src="./img/information/prise-list/house.png" alt="House">
+                                </div>
+                                <div class="price-list-info">
+                                    <div class="price">
+                                        <span class="price-list-title">Цена:</span>
+                                        <span class="price-list-title-info" id="price-list" data-month="9"></span>
+                                    </div>
+                                    <div class="time-info">
+                                        <div>
+                                            <span class="time-title">Время:</span>
+                                            <span class="price-list-info-text">одна ночь</span>
+                                        </div>
+                                        <div>
+                                            <span class="time-title">Заезд:</span>
+                                            <span class="price-list-info-text" id="checkIn"></span>
+                                        </div>
+                                        <div>
+                                            <span class="time-title">Выезд:</span>
+                                            <span class="price-list-info-text" id="checkOut"></span>    
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide swiper-slide-price-list" id="november" data-swiper-slide-index="8">
+                            <div class="month-price-list">
+                                <div class="month-image">
+                                    <img src="./img/information/prise-list/house.png" alt="House">
+                                </div>
+                                <div class="price-list-info">
+                                    <div class="price">
+                                        <span class="price-list-title">Цена:</span>
+                                        <span class="price-list-title-info" id="price-list" data-month="10"></span>
+                                    </div>
+                                    <div class="time-info">
+                                        <div>
+                                            <span class="time-title">Время:</span>
+                                            <span class="price-list-info-text">одна ночь</span>
+                                        </div>
+                                        <div>
+                                            <span class="time-title">Заезд:</span>
+                                            <span class="price-list-info-text" id="checkIn"></span>
+                                        </div>
+                                        <div>
+                                            <span class="time-title">Выезд:</span>
+                                            <span class="price-list-info-text" id="checkOut"></span>    
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide swiper-slide-price-list" id="winter" data-swiper-slide-index="9">
+                            <div class="month-price-list">
+                                <div class="month-image">
+                                    <img src="./img/information/prise-list/house.png" alt="House">
+                                </div>
+                                <div class="price-list-info">
+                                    <div class="price">
+                                        <span class="price-list-title">Цена:</span>
+                                        <span class="price-list-title-info" id="price-list" data-month="1"></span>
+                                    </div>
+                                    <div class="time-info">
+                                        <div>
+                                            <span class="time-title">Время:</span>
+                                            <span class="price-list-info-text">одна ночь</span>
+                                        </div>
+                                        <div>
+                                            <span class="time-title">Заезд:</span>
+                                            <span class="price-list-info-text" id="checkIn"></span>
+                                        </div>
+                                        <div>
+                                            <span class="time-title">Выезд:</span>
+                                            <span class="price-list-info-text" id="checkOut"></span>    
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="swiper-button-prev swiper-price-prev">
+                        <svg width="51" height="68" viewBox="0 0 51 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50.3334 4.00004L50.3334 64C50.3315 64.6075 50.164 65.203 49.8488 65.7223C49.5337 66.2416 49.0829 66.6652 48.5449 66.9474C48.007 67.2295 47.4022 67.3597 46.7958 67.3237C46.1894 67.2878 45.6043 67.0871 45.1034 66.7434L1.77011 36.7434C-0.0265578 35.5 -0.0265579 32.5067 1.77011 31.26L45.1034 1.26004C45.6033 0.912788 46.1887 0.709153 46.7961 0.671256C47.4035 0.633359 48.0097 0.762652 48.5488 1.04509C49.0879 1.32752 49.5393 1.75229 49.8539 2.27325C50.1686 2.79421 50.3344 3.39144 50.3334 4.00004ZM9.52344 34L43.6668 57.64L43.6668 10.36L9.52344 34Z" fill="#4D4D4D" />
+                        </svg>
+                    </div>
+                    <div class="swiper-button-next swiper-price-next">
+                        <svg width="51" height="68" viewBox="0 0 51 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.666557 3.99979L0.666555 63.9998C0.668462 64.6073 0.836003 65.2027 1.15115 65.722C1.46629 66.2414 1.9171 66.6649 2.45506 66.9471C2.99302 67.2293 3.59776 67.3594 4.20417 67.3235C4.81057 67.2875 5.3957 67.0869 5.89656 66.7431L49.2299 36.7431C51.0266 35.4998 51.0266 32.5065 49.2299 31.2598L5.89656 1.25979C5.39675 0.912544 4.81133 0.708908 4.20391 0.671012C3.59649 0.633115 2.9903 0.762407 2.4512 1.04484C1.91211 1.32727 1.46071 1.75205 1.14608 2.27301C0.831444 2.79397 0.6656 3.39119 0.666557 3.99979ZM41.4766 33.9998L7.33322 57.6398L7.33322 10.3598L41.4766 33.9998Z" fill="#4D4D4D" />
+                    </svg>
+                    </div> 
+                </div>
+            </div>
+
+            <div class="photo tab none" id="photo">
+                <div class="swiper-container swiper-photo">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide swiper-slide-photo">
+                            <div class="swiper-slide-image">
+                                <img src="./img/information/photo/photo-1.png" alt="House">
+                            </div>
+                        </div>
+                        <div class="swiper-slide swiper-slide-photo">
+                            <div class="swiper-slide-image">
+                                <img src="./img/information/photo/photo-2.png" alt="House">
+                            </div>
+                        </div>
+                        <div class="swiper-slide swiper-slide-photo">
+                            <div class="swiper-slide-image">
+                                <img src="./img/information/photo/photo-3.png" alt="House">
+                            </div>
+                        </div>
+                        <div class="swiper-slide swiper-slide-photo">
+                            <div class="swiper-slide-image">
+                                <img src="./img/information/photo/photo-4.png" alt="House">
+                            </div>
+                        </div>
+                        <div class="swiper-slide swiper-slide-photo">
+                            <div class="swiper-slide-image">
+                                <img src="./img/information/photo/photo-5.png" alt="House">
+                            </div>
+                        </div>
+                        <div class="swiper-slide swiper-slide-photo">
+                            <div class="swiper-slide-image">
+                                <img src="./img/information/photo/photo-6.png" alt="House">
+                            </div>
+                        </div>
+                        <div class="swiper-slide swiper-slide-photo">
+                            <div class="swiper-slide-image">
+                                <img src="./img/information/photo/photo-7.png" alt="House">
+                            </div>
+                        </div>
+                        <div class="swiper-slide swiper-slide-photo">
+                            <div class="swiper-slide-image">
+                                <img src="./img/information/photo/photo-8.png" alt="House">
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="swiper-pagination swiper-photo-pagination"></div>
+    
+                    <div class="swiper-button-prev swiper-photo-prev">
+                        <svg  viewBox="0 0 51 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50.3334 4.00004L50.3334 64C50.3315 64.6075 50.164 65.203 49.8488 65.7223C49.5337 66.2416 49.0829 66.6652 48.5449 66.9474C48.007 67.2295 47.4022 67.3597 46.7958 67.3237C46.1894 67.2878 45.6043 67.0871 45.1034 66.7434L1.77011 36.7434C-0.0265578 35.5 -0.0265579 32.5067 1.77011 31.26L45.1034 1.26004C45.6033 0.912788 46.1887 0.709153 46.7961 0.671256C47.4035 0.633359 48.0097 0.762652 48.5488 1.04509C49.0879 1.32752 49.5393 1.75229 49.8539 2.27325C50.1686 2.79421 50.3344 3.39144 50.3334 4.00004ZM9.52344 34L43.6668 57.64L43.6668 10.36L9.52344 34Z" fill="#4D4D4D" />
+                        </svg>
+                    </div>
+                    <div class="swiper-button-next swiper-photo-next">
+                        <svg  viewBox="0 0 51 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.666557 3.99979L0.666555 63.9998C0.668462 64.6073 0.836003 65.2027 1.15115 65.722C1.46629 66.2414 1.9171 66.6649 2.45506 66.9471C2.99302 67.2293 3.59776 67.3594 4.20417 67.3235C4.81057 67.2875 5.3957 67.0869 5.89656 66.7431L49.2299 36.7431C51.0266 35.4998 51.0266 32.5065 49.2299 31.2598L5.89656 1.25979C5.39675 0.912544 4.81133 0.708908 4.20391 0.671012C3.59649 0.633115 2.9903 0.762407 2.4512 1.04484C1.91211 1.32727 1.46071 1.75205 1.14608 2.27301C0.831444 2.79397 0.6656 3.39119 0.666557 3.99979ZM41.4766 33.9998L7.33322 57.6398L7.33322 10.3598L41.4766 33.9998Z" fill="#4D4D4D" />
+                    </svg>
+                    </div> 
+    
+                </div>
+            </div>  
+
+            <div class="information-transfer tab none" id="transfer">
+                <div class="information-transfer-info">
+                    <h3 class="information-transfer-info-title">Позвоните - и мы приедем</h3>
+                    <p class="information-transfer-info-text">Наши водители приедут за вами, где бы вы не находились</p>
+                    <div class="information-transfer-info-contacts-wrapper">
+                        <div class="information-transfer-info-phone">
+                            <img src="./img/information/transfer/phone.svg" alt="Phone">
+                            <p class="form-self-call-phone">+7 912 345-67-89</p>
+                        </div>
+                        <div class="information-transfer-info-connection"> 
+                            <a href="https://wa.me/+79409575208">
+                                <img class="information-transfer-info-connection-image" src="./img/information/transfer/whatsapp.svg" alt="Whatsapp">
+                            </a>
+                            <a href="https://t.me/+79409575208">
+                                <img class="information-transfer-info-connection-image" src="./img/information/transfer/telegram.svg" alt="Telegram">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="information-transfer-photo">
+                    <img src="./img/information/transfer/transfer.png" alt="Car">
+                </div>
+            </div>
+        </section>
+        
+        <section class="advantages" id="advantages">
+            <h2 class="advantages-title">Почему, стоит выбрать нас?</h2>
+            <div class="swiper-container swiper-advantages">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide swiper-slide-advantages">
+                        <div class="advantages-content-info">
+                            <img src="./img/advantages/sea.png" alt="Море">
+                            <p class="advantages-content-info-text">В 8 минутах от моря</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide swiper-slide-advantages">
+                        <div class="advantages-content-info">
+                            <img src="./img/advantages/downtown.png" alt="Центр города">
+                            <p class="advantages-content-info-text">5 минут до центра города</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide swiper-slide-advantages">
+                        <div class="advantages-content-info">
+                            <img src="./img/advantages/rest.png" alt="Отдых">
+                            <p class="advantages-content-info-text">Уютное и тихое место</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-pagination swiper-advantages-pagination"></div>
+            </div>
+            <div class="advantages-button">
+                <button class="advantages-button-order">Заказать звонок</button>
+                <a href="#reserve"><button class="advantages-button-call">Связаться самому</button></a>
+            </div>
+        </section>
+
+        <section class="section-reserve" id="reserve">
+            <div class="section-reserve-content">
+                <div class="section-reserve-content-info">
+                    <h2 class="section-reserve-content-info-title">Успейте забронировать!</h2>
+                    <div class="reserve-content-info-contacts">
+                        <div class="reserve-content-info-contacts-wrapper">
+                            <img class="reserve-content-info-contacts-img tick" src="./img/reserve/tick.svg" alt="Tick">
+                            <img class="phone-mobile" src="./img/reserve/phone-mobile.svg" alt="Tick">
+                            <p class="form-self-call-phone">+7 912 345-67-89</p>
+                        </div>
+                        <div class="reserve-content-info-contacts-wrapper">
+                            <img class="reserve-content-info-contacts-img mail" src="./img/reserve/mail.svg" alt="Mail">
+                            <p class="mail">test_email@mail.ru</p>
+                        </div>
+                    </div>
+                    <div class="reserve-content-info-social-networks">
+                        <a href="https://wa.me/+79409575208"><img src="./img/reserve/whatsapp.svg" alt="Whatsapp"></a>
+                        <a href="https://t.me/+79409575208"><img src="./img/reserve/telegram.svg" alt="Telegram"></a>
+                        <img src="./img/reserve/instagram.svg" alt="Instagram">
+                        <div class="reserve-content-info-address">
+                            <img src="./img/reserve/geo.svg" alt="Address">
+                            <p>Ул. Чанба 54А</p>
+                        </div>
+                    </div>
+                    <div class="reserve-content-info-button">Связаться самому</div>
+                    <button class="reserve-order-call">Заказать звонок</button>
+                </div>
+                <div class="section-reserve-content-form">
+                    <form class="form form-white">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        <div class="form-content-dates-arrival">
+                            <h3 class="form-content-dates-arrival-title">Забронировать</h3>
+                            <div class="form-data-input-date-wrapper">
+                                <div class="form-group-input-data" >
+                                    <span class="label checkInDateSpan">Заезд</span>
+                                    <input type="date" id="" class="date-input form-checkIn">
+                                </div>
+                                <div class="form-group-input-data">
+                                    <span class="label checkOutDateSpan">Выезд</span>
+                                    <input type="date" class="date-input form-checkOut">
+                                </div>
+                                <div class="form-group-input-data">
+                                    <span class="label number-label">Номер</span>
+                                    <svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14.9143 0.393039C14.8506 0.274574 14.7551 0.175355 14.638 0.106088C14.5208 0.036822 14.3866 0.000139536 14.2497 0H0.748466C0.611836 0.000551729 0.477944 0.0375049 0.36119 0.106885C0.244436 0.176266 0.149237 0.275449 0.0858307 0.393768C0.0224242 0.512087 -0.0067905 0.645065 0.00132822 0.778403C0.00944695 0.91174 0.0545919 1.04039 0.131908 1.15052L6.88254 10.6832C6.95135 10.7809 7.04342 10.8608 7.15083 10.916C7.25823 10.9712 7.37775 11 7.49909 11C7.62043 11 7.73995 10.9712 7.84736 10.916C7.95476 10.8608 8.04684 10.7809 8.11565 10.6832L14.8663 1.15052C14.9443 1.04062 14.9901 0.91189 14.9986 0.778339C15.007 0.644788 14.9779 0.511524 14.9143 0.393039ZM7.49909 8.97758L2.1796 1.46657H12.8186L7.49909 8.97758Z" fill="#ADADAD" />
+                                    </svg>
+                                    <input type="number" class="date-input numberInput" >
+                                    <ul class="dropdown numberDropdown" >
+                                        <li class="dropdown-item">01</li>
+                                        <li class="dropdown-item">02</li>
+                                        <li class="dropdown-item">03</li>
+                                        <li class="dropdown-item">04</li>
+                                        <li class="dropdown-item">05</li>
+                                        <li class="dropdown-item">06</li>
+                                        <li class="dropdown-item">07</li>
+                                        <li class="dropdown-item">08</li>
+                                        <li class="dropdown-item">09</li>
+                                        <li class="dropdown-item">10</li>
+                                        <li class="dropdown-item">11</li>
+                                        <li class="dropdown-item">12</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <button class="form-content-continue">Далее</button>
+                            <p class="form-content-text">Нажимая на кнопку, я даю разрешение на обработку данных</p>
+                        </div>
+                        <div class="form-human-data none">
+                            <h3 class="form-content-dates-arrival-title">Забронировать</h3>
+                            <div class="form-call" id="order-call">
+                                <input class="form-order-call-input" id="main-name" type="text" placeholder="Имя">
+                                <input class="form-order-call-input" id="main-surname" type="text" placeholder="Фамилия">
+                                <input class="form-order-call-input" id="main-phone" type="tel" placeholder="Телефон">
+                                <div class="form-order-call-checkbox ">
+                                    <button class="toggle-button">
+                                        <svg class="toggle-button-svg" width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.94285 0.285847C9.90041 0.19969 9.83672 0.127531 9.75864 0.0771551C9.68056 0.0267796 9.59107 0.000101481 9.49981 0H0.498977C0.40789 0.000401257 0.318629 0.0272763 0.240793 0.0777349C0.162957 0.128193 0.0994914 0.200326 0.0572204 0.286377C0.0149495 0.372427 -0.004527 0.469138 0.000885481 0.566111C0.00629796 0.663083 0.0363946 0.756648 0.0879389 0.836742L4.58836 7.7696C4.63423 7.84066 4.69561 7.89876 4.76722 7.93889C4.83882 7.97903 4.9185 8 4.99939 8C5.08029 8 5.15997 7.97903 5.23157 7.93889C5.30318 7.89876 5.36456 7.84066 5.41043 7.7696L9.91085 0.836742C9.9629 0.756812 9.9934 0.663193 9.99904 0.566065C10.0047 0.468937 9.98525 0.372018 9.94285 0.285847ZM4.99939 6.52915L1.45307 1.06659H8.54572L4.99939 6.52915Z" fill="#4d4d4d" />
+                                        </svg>
+                                    </button>
+                                    <p class="selected-title form-order-call-checkbox-title" id="main-order-call" data-checkbox="telegram">Мне удобней Telegram</p>
+                                    <div class="data-block form-order-call-block none">
+                                        <ul class="form-order-call-list">
+                                            <li class="call" data-value="Мне удобней звонок">Мне удобней звонок</li>
+                                            <li class="whatsapp" data-value="Мне удобней WhatsApp">Мне удобней WhatsApp</li>
+                                            <li class="telegram" data-value="Мне удобней Telegram">Мне удобней Telegram</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-button">
+                                <button class="form-button-verify" >Подтвердить</button>
+                                <p class="form-content-text">Нажимая на кнопку, я даю разрешение на обработку данных</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <footer class="layout">
+            <div class="layout-top footer mobile">
+                <nav class="layout-nav mobile">
+                    <ul class="layout-nav-list mobile">
+                        <li class="layout-nav-list-el mobile"><a href="#main">Главная</a></li>
+                        <li class="layout-nav-list-el mobile"><a href="#information">Услуги</a></li>
+                        <li class="layout-nav-list-el mobile"><a href="#advantages">Преимущества</a></li>
+                        <li class="layout-nav-list-el mobile"><a href="#reserve">Контакты</a></li>
+                    </ul>
+                </nav>
+                <div class="layout-info-wrapper">
+                    <div class="layout-info mobile">
+                        <ul class="layout-info-list mobile">
+                            <li class="layout-info-list-el mobile">
+                                <img class="layout-info-list-el-image" src="./img/main/phone.svg" alt="Phone">
+                                +7 940 994-47-34
+                            </li>
+                            <li class="layout-info-list-el mobile">
+                                <img class="layout-info-list-el-image" src="./img/main/geo.svg" alt="Address">
+                                Ул. Чанба 54А
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="image-logo" href="/index.html">
+                        <img  src="./img/main/logo.svg" alt="Logo" class="logo">
+                    </a>
+                </div>
+            </div>
+            <div class="layout-top footer">
+                <a href="./index.html">
+                    <img src="./img/main/logo.svg" alt="Logo">
+                </a>
+                <nav class="layout-nav">
+                    <ul class="layout-nav-list footer" >
+                        <a href="#main"><li class="layout-nav-list-el">Главная</li></a>
+                        <a href="#information"><li class="layout-nav-list-el">Услуги</li></a>
+                        <a href="#advantages"><li class="layout-nav-list-el">Преимущества</li></a>
+                        <a href="#reserve"><li class="layout-nav-list-el">Контакты</li></a>
+                    </ul>
+                </nav>
+                <div class="layout-info">
+                    <ul class="layout-info-list">
+                        <li class="layout-info-list-el phone-contacts" >
+                            <img src="./img/main/phone.svg" alt="Phone">
+                        </li>
+                        <li class="layout-info-list-el">
+                            <img src="./img/main/geo.svg" alt="Address">
+                            Ул. Чанба 54А
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="./js/constant.js" type="module"></script>
+    <script src="./js/script.js" type="module"></script>
+    <script src="./js/main.js" type="module"></script>
+    <script src="./js/handlerRequest.js" type="module"></script>
+</body>
+</html>
