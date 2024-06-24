@@ -1,4 +1,4 @@
-import constant from '/js/constant.js';
+// import constant from '/js/constant.js';
 
 
 let dataPrice = []
