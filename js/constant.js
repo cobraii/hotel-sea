@@ -1,2 +1,2 @@
-const constant = 'eco-house-apsny.ru';
-export default constant;
+// const constant = 'eco-house-apsny.ru';
+// export default constant;
