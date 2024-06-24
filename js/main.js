@@ -249,93 +249,93 @@ viewAll.addEventListener('click', function(){
 
 })
 
-async function createPrice(){
-    await getDataPrice()
-    await addPrice()
-}
+// async function createPrice(){
+//     await getDataPrice()
+//     await addPrice()
+// }
 
-async function createTime(){
-    await getDataTime()
-    await addTime()
-}
+// async function createTime(){
+//     await getDataTime()
+//     await addTime()
+// }
 
-async function createСontacts(){
-    await getContacts()
-    await addContacts()
-}
+// async function createСontacts(){
+//     await getContacts()
+//     await addContacts()
+// }
 
-async function getDataPrice() {
-    const queryString = `http://${constant}/api/setting/prices`;
-    try {
-        const response = await fetch(queryString)
-        dataPrice = await response.json()
-    }
-    catch (error) {
-        console.error("Error fetching dataPrice:", error);
-    }
-}
+// async function getDataPrice() {
+//     const queryString = `http://${constant}/api/setting/prices`;
+//     try {
+//         const response = await fetch(queryString)
+//         dataPrice = await response.json()
+//     }
+//     catch (error) {
+//         console.error("Error fetching dataPrice:", error);
+//     }
+// }
 
-function getPriceById(id) {
-    const item = dataPrice.find(item => item.id === id);
-    return item.price
-}
+// function getPriceById(id) {
+//     const item = dataPrice.find(item => item.id === id);
+//     return item.price
+// }
 
-async function addPrice() {
+// async function addPrice() {
 
-    document.querySelectorAll("#price-list").forEach((item) => {
-        const id = parseInt(item.dataset.month); 
-        const price = getPriceById(id);
-        item.textContent = `${price} ₽`;
-    });
-}
+//     document.querySelectorAll("#price-list").forEach((item) => {
+//         const id = parseInt(item.dataset.month); 
+//         const price = getPriceById(id);
+//         item.textContent = `${price} ₽`;
+//     });
+// }
 
-async function getDataTime() {
-    const queryString = `http://${constant}/api/setting/check-in/out`;
-    try {
-        const response = await fetch(queryString)
-        dataTime = await response.json()
-    }
-    catch (error) {
-        console.error("Error fetching dataTime:", error);
-    }
-}
+// async function getDataTime() {
+//     const queryString = `http://${constant}/api/setting/check-in/out`;
+//     try {
+//         const response = await fetch(queryString)
+//         dataTime = await response.json()
+//     }
+//     catch (error) {
+//         console.error("Error fetching dataTime:", error);
+//     }
+// }
 
-async function addTime(){
-    document.querySelectorAll("#checkIn").forEach((item) => {
-        item.textContent = `не раньше ${removeSeconds(dataTime.checkIn)}`
-    })
+// async function addTime(){
+//     document.querySelectorAll("#checkIn").forEach((item) => {
+//         item.textContent = `не раньше ${removeSeconds(dataTime.checkIn)}`
+//     })
 
-    document.querySelectorAll("#checkOut").forEach((item) => {
-        item.textContent = ` не позже ${removeSeconds(dataTime.checkOut)}`
-    })
-}
+//     document.querySelectorAll("#checkOut").forEach((item) => {
+//         item.textContent = ` не позже ${removeSeconds(dataTime.checkOut)}`
+//     })
+// }
 
-async function getContacts() {
-    const queryString = `http://${constant}/api/setting/my/contacts`;
-    try {
-        const response = await fetch(queryString)
-        dataContacts = await response.json()
-    }
-    catch (error) {
-        console.error("Error fetching dataPrice:", error);
-    }
-}
+// async function getContacts() {
+//     const queryString = `http://${constant}/api/setting/my/contacts`;
+//     try {
+//         const response = await fetch(queryString)
+//         dataContacts = await response.json()
+//     }
+//     catch (error) {
+//         console.error("Error fetching dataPrice:", error);
+//     }
+// }
 
-async function addContacts(){
-    const rawPhoneNumber = `+${dataContacts.phone}`
-    const phoneNumber = rawPhoneNumber.replace(/(\+7)(\d{3})(\d{3})(\d{2})(\d{2})/, '$1 $2 $3-$4-$5');
-    document.querySelectorAll(".layout-info-list-el.phone-contacts").forEach( item => {
-        item.insertAdjacentHTML('beforeend', `<span>${phoneNumber}</span>`)
-    })
-    document.querySelectorAll(".form-self-call-phone").forEach(item => {
-        item.textContent = `${phoneNumber}`
-    })
+// async function addContacts(){
+//     const rawPhoneNumber = `+${dataContacts.phone}`
+//     const phoneNumber = rawPhoneNumber.replace(/(\+7)(\d{3})(\d{3})(\d{2})(\d{2})/, '$1 $2 $3-$4-$5');
+//     document.querySelectorAll(".layout-info-list-el.phone-contacts").forEach( item => {
+//         item.insertAdjacentHTML('beforeend', `<span>${phoneNumber}</span>`)
+//     })
+//     document.querySelectorAll(".form-self-call-phone").forEach(item => {
+//         item.textContent = `${phoneNumber}`
+//     })
 
-    document.querySelectorAll(".mail").forEach(item => {
-        item.textContent = dataContacts.email
-    })
+//     document.querySelectorAll(".mail").forEach(item => {
+//         item.textContent = dataContacts.email
+//     })
 
-}
+// }
 
 // Функция для удаления секунд из времени
 function removeSeconds(time) {

@@ -103,6 +103,15 @@
     }
 }
 
+.social-networks-link{
+    flex: 0 0 auto;
+    @media (max-width: 1199px) {
+        margin-bottom: 15px;
+        width: 16px;
+        height: 16px;
+    }
+}
+
 .reserve-content-info-address{
     display: none;
     padding-left: 30px;

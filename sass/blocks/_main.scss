@@ -17,7 +17,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 898px;
     background-image: url(../img/main/bg-title.png);
     background-size: cover;
 
@@ -215,6 +214,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 10px;
     border: 0.50px solid #000;
     background: #fff;
+
+    @media (max-width: 1199px) {
+        height: auto;
+    }
 }
 
 .dropdown li {
@@ -222,6 +225,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font-size: 16px;
     color: #4d4d4d;
     cursor: pointer;
+    @media (max-width: 1199px) {
+        font-size: 9px;
+    }
 }
 
 .dropdown li:hover {
@@ -430,6 +436,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .bottom-line{
+    margin-bottom: 100px;
     display: flex;
     gap: 5px;
     

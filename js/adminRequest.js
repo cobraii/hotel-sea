@@ -5,7 +5,8 @@ let previousLengthNew = 0;
 let requestsAll = []
 let requestsNew = []
 let currentPage = 0;
-let page = 0
+let pageNew = 0
+let pageAll = 0
 const size = 3; 
 
 // const csrfToken = document.querySelector('meta[name="_csrf"]').content;
@@ -22,7 +23,7 @@ function showNotification() {
 }
 
 async function getRequestNew() {
-    const queryString = `http://${constant}/api/clients?page=${page}&size=${size}&sort=id%2Cdesc&isProcessed=false`;
+    const queryString = `http://${constant}/api/clients?page=${pageNew}&size=${size}&sort=id%2Cdesc&isProcessed=false`;
     try {
         const response = await fetch(queryString);
         requestsNew = await response.json();
@@ -31,7 +32,7 @@ async function getRequestNew() {
             showNotification();
         }
         previousLengthNew = previousLength;
-        addRequestNew(page);
+        addRequestNew(pageNew);
 
         if (requestsNew.totalElements !== 0) {
             document.querySelector(".icon-message").classList.remove('none');
@@ -46,11 +47,11 @@ async function getRequestNew() {
 setInterval(getRequestNew, 6000);
 
 async function getRequestAll() {
-    const queryString = `http://${constant}/api/clients?page=${page}&size=${size}&sort=id%2Cdesc&isProcessed=true`;
+    const queryString = `http://${constant}/api/clients?page=${pageAll}&size=${size}&sort=id%2Cdesc&isProcessed=true`;
     try {
         const response = await fetch(queryString);
         requestsAll = await response.json();
-        addRequestAll(page);
+        addRequestAll(pageAll);
     } catch (error) {
         console.error("Error fetching data:", error);
     }
@@ -148,7 +149,7 @@ function createPagination(containerId, totalPages, currentPage, navigateFunction
 }
 
 function navigateToPageForNewBids(pageNumber) {
-    page = pageNumber;
+    pageNew = pageNumber;
     getRequestNew();
 }
 
@@ -232,7 +233,7 @@ async function handlerRequest(clientId) {
 }
 
 function navigateToPageForAllBids(pageNumber) {
-    page = pageNumber;
+    pageAll = pageNumber;
     getRequestAll();
 }
 

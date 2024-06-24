@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-TileColor" content="#da532c">
+
+    <meta name="msapplication-config" content="/img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/img/favicons/site.webmanifest">
+    <link rel="mask-icon" href="/img/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/img/favicons/favicon.ico">
+
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/admin.css">
+    <title>EcoHouse Apsny</title>
+</head>
+<body>
+    <form class="authorization " th:action="@{/login}" method="post">
+        <div class="authorization-wrapper">
+            <h2 class="authorization-title">Вход в личный кабинет</h2>
+            <div class="authorization-login">
+                <h3 class="authorization-data-title">Логин</h3>
+                <input type="text" name="username" placeholder="Логин" class="authorization-login-input">
+            </div>
+            <div class="authorization-password">
+                    <h3 class="authorization-data-title">Пароль</h3>
+                    <input type="password" name="password" placeholder="Пароль" class="authorization-password-input">
+            </div>
+
+            <div class="message error" th:if="${param.error}">
+                Invalid username and password.
+            </div>
+            
+            <button class="authorization-button">Подтвердить</button>
+        </div>
+    </form>
+</body>
+</html>
