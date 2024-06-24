@@ -249,7 +249,7 @@ viewAll.addEventListener('click', function(){
 
 })
 
-// async function createPrice(){
+// async function createPrice(){ 
 //     await getDataPrice()
 //     await addPrice()
 // }
